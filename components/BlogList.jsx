@@ -19,7 +19,7 @@ const BlogList = () => {
                 if (menu === 'All') return blog
                 return blog.category === menu
             }).map((blog) => (
-                <BlogItem key={blog.id} {...blog} />
+                <BlogItem key={blog.id} id={blog.id} image={blog.image} title={blog.title} description={blog.description} category={blog.category} />
             ))}
         </div>
     </div>
