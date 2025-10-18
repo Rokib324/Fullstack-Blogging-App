@@ -1,22 +1,30 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, use } from 'react'
 import { blog_data, assets } from '@/assets/assets'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import axios from 'axios'
 
 const page = ({params}) => {
-
+    const resolvedParams = use(params);
     const [data, setData] = useState(null);
 
     const fetchBlogData = async () => {
-        for (let i = 0; i < blog_data.length; i++){
-            if (Number(params.id) === blog_data[i].id){
-                setData(blog_data[i]);
-                console.log(blog_data[i]);
-                break;
+        try {
+            const response = await axios.get('/api/blog',{
+                params: {
+                    id: resolvedParams.id
+                }
+            })
+            if(response.data.success){
+                setData(response.data.blog)
+            } else {
+                console.error('No blog found')
             }
+        } catch (error) {
+            console.error('Error fetching blog:', error)
         }
     }
 
@@ -33,7 +41,7 @@ const page = ({params}) => {
         </div>
         <div className='text-center my-24'>
             <h1 className='text-3xl sm:text-5xl font-medium max-w-[740px] m-auto'>{data?.title}</h1>
-            <Image src={data.author_img} alt='author' width={60} height={60} className='rounded-full mx-auto mt-6 border border-white' />
+            <Image src={data.author_img} alt='author' width={60} height={60} className='rounded-sm mx-auto mt-6' />
             <p className='mt-2 font-medium text-gray-600'>{data?.author}</p>
         </div>
     </div>

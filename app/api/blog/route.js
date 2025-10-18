@@ -3,6 +3,7 @@ import connectDB from "@/lib/config/db"
 import { writeFile } from "fs/promises";
 import BlogModel from "@/lib/models/BlogModel";
 import { NextResponse } from "next/server";
+import { fstat } from "fs";
 
 // Connect to the database
 const LoadDB = async () => {
@@ -13,9 +14,15 @@ LoadDB();
 // API endpoint to get all blogs
 async function GET(request) {
 
-    const blogs = await BlogModel.find();   
-
-    return NextResponse.json({blogs})
+    const blogId = request.nextUrl.searchParams.get('id');
+    if(blogId){
+        const blog = await BlogModel.findById(blogId);
+        return NextResponse.json({success: true, blog: blog})
+    }
+    else{
+        const blogs = await BlogModel.find({});
+        return NextResponse.json({success: true, blogs: blogs})
+    }
 }
 
 // API endpoint to uploading a new blog
@@ -45,4 +52,13 @@ async function POST(request) {
     return NextResponse.json({success: true, message: "Blog created successfully"})
 }
 
-export { GET, POST }
+// API endpoint to delete a blog
+async function DELETE(request) {
+    const blogId = await request.nextUrl.searchParams.get('id');
+    const blog = await BlogModel.findById(blogId);
+    fs.unlink(`./public/${blog.image}`,()=>{});
+    await BlogModel.findByIdAndDelete(blogId);
+    return NextResponse.json({success: true, message: "Blog deleted successfully"})
+}
+
+export { GET, POST, DELETE }

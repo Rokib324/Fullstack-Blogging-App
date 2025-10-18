@@ -13,8 +13,8 @@ const page = () => {
     const [data, setData] = useState({
         title: '',
         description: '',
-        category: 'Startup',
-        author: 'Alex Bennett',
+        category: 'startup',
+        author: 'MD ROKIBUL ISLAM',
         author_img: '/rokib.jpeg'
     });
 
@@ -41,8 +41,8 @@ const page = () => {
             setData({
                 title: '',
                 description: '',
-                category: 'Startup',
-                author: 'Alex Bennett',
+                category: 'startup',
+                author: 'MD ROKIBUL ISLAM',
                 author_img: '/rokib.jpeg'
             });
         }else{
