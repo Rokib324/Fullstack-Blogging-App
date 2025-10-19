@@ -46,22 +46,11 @@ const page = ({params}) => {
         </div>
     </div>
     <div className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
-        <Image src={data.image} alt='blog' width={800} height={800} className='w-full border-4 border-white' />
-        <h1 className='my-8 text-[26px] font-semibold'>Introduction:</h1>
-        <p>{data?.description}</p>
-        <h3 className='my-5 text-[18px] font-semibold'>Step 1: Self-Reflection and Goal Setting</h3>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
-        <h3 className='my-5 text-[18px] font-semibold'>Step 2: Explore Resources</h3>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
-        <h3 className='my-5 text-[18px] font-semibold'>Step 3: Develop a Plan</h3>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
-        <h3 className='my-5 text-[18px] font-semibold'>Step 4: Conclusion</h3>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
-        <p className='my-3'>Fazley R. brother and Ruhi, my house has an electricity short circuit, so I can’t work right now because my laptop charge is below 10%. I’ll resume work once the electricity issue is fixed.</p>
+        <Image src={data.image} alt='blog' width={1200} height={720} className='w-full border-4 border-white' />
+        
+        <div className='blog-content' dangerouslySetInnerHTML={{ __html: data?.description }} />
 
+        
         <div className='my-24'>
             <p className='text-gray-600 text-sm'>Share this post on social media</p>
             <div className='flex gap-4 mt-4'>

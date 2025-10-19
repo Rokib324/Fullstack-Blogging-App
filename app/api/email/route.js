@@ -10,14 +10,21 @@ const LoadDB = async () => {
 LoadDB();
 
 export async function POST(request) {
-    try {
         const formData = await request.formData();
         const emailData = {
             email: `${formData.get('email')}`,
         }
         await EmailModel.create(emailData);
         return NextResponse.json({success: true, message: "Email Subscribed"})
-    } catch (error) {
-        return NextResponse.json({success: false, message: "Email Subscribed Failed"})
-    }
+}
+
+export async function GET(request) {
+    const emails = await EmailModel.find();
+    return NextResponse.json({success: true, emails: emails})
+}
+
+export async function DELETE(request) {
+    const id = request.nextUrl.searchParams.get('id');
+    await EmailModel.findByIdAndDelete(id);
+    return NextResponse.json({success: true, message: "Email Deleted"})
 }
