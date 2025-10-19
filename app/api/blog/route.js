@@ -3,7 +3,7 @@ import connectDB from "@/lib/config/db"
 import { writeFile } from "fs/promises";
 import BlogModel from "@/lib/models/BlogModel";
 import { NextResponse } from "next/server";
-import { fstat } from "fs";
+import fs from "fs";
 
 // Connect to the database
 const LoadDB = async () => {
