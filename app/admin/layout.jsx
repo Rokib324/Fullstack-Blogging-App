@@ -15,15 +15,9 @@ export default function AdminLayout({ children }) {
     const handleLogout = async () => {
         setIsLoggingOut(true)
         try {
-            const response = await fetch('/api/admin/logout', {
-                method: 'POST',
-            })
-            
-            if (response.ok) {
-                // Clear the token from cookies
-                document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'
-                router.push('/admin/login')
-            }
+            await fetch('/api/admin/logout', { method: 'POST' })
+            document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+            router.push('/admin/login')
         } catch (error) {
             console.error('Logout failed:', error)
         } finally {
@@ -53,7 +47,6 @@ export default function AdminLayout({ children }) {
                     {children}
                 </div>
             </div>
-            
         </div>
     )
 }
