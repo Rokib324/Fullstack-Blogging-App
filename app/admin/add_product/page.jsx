@@ -61,7 +61,7 @@ const page = () => {
         <input type="text" name='title' onChange={onChangeHandler} value={data.title} placeholder='Enter Blog Title' className='w-full sm:w-[500px] border border-black px-4 py-3 mt-4' required />
         
         <p className='text-xl mt-4'>Blog Description</p>
-        <textarea type="text" name='description' onChange={onChangeHandler} value={data.description} placeholder='Enter Blog Description' className='w-full sm:w-[500px] border border-black px-4 py-3 mt-4' required />
+        <textarea type="text" name='description' onChange={onChangeHandler} value={data.description} placeholder='Enter Blog Description. NB: use HTML tags for formatting, like <p></p>,<h1></h1>...' className='w-full sm:w-[500px] border border-black px-4 py-3 mt-4' required />
         
         <p className='text-xl mt-4'>Blog Category</p>
         <select name="category" onChange={onChangeHandler} value={data.category} className='w-40 mt-4 py-3 px-4 sm:w-[200px] border border-black text-gray-500' required>
